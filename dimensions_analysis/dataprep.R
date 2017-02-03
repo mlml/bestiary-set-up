@@ -24,10 +24,13 @@ condition.data <- rbind(suborn, suborq)
 
 t <- read.csv('C:/Users/michael/Dropbox/dimensions/pgdb_analysis.txt')
 
-t$Constituent <- factor(t$element_number, labels = c('A', 'B', 'C'))
-
 t <- merge(t, condition.data)
 t$Intonation <- factor(t$Intonation)
+
+t <- subset(t, (Focus == 'Wide' & element_number > 1)|(Focus != 'Wide' & element_number > 3))
+t[t$Focus == 'Wide',]$element_number <- t[t$Focus == 'Wide',]$element_number + 2
+
+t$Constituent <- factor(t$element_number, labels = c('A', 'B', 'C'))
 
 t <- na.omit(t) # Whole word creaky
 

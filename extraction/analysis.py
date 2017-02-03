@@ -59,15 +59,15 @@ def analysis():
         discourse = c.discourses[0]
         print(discourse)
         csv_path = 'test.txt'
-        q = c.query_graph(c.word).filter(c.word.type_subset == 'of_interest').filter(c.word.name_position > 3)
+        q = c.query_graph(c.word).filter(c.word.type_subset == 'of_interest')
         q = q.columns(c.word.label.column_name('word'),
                     c.word.name_position.column_name('element_number'),
                     c.word.duration.column_name('duration'),
                     c.word.relativized_duration_by_speaker.column_name('relative_duration'),
                     c.word.pitch.mean.column_name('pitch'),
                     c.word.pitch_relative.mean.column_name('relative_pitch'),
-                    c.word.formants.mean.column_name('formants'),
-                    c.word.formants_relative.mean.column_name('relative_formants'),
+                    #c.word.formants.mean.column_name('formants'),
+                    #c.word.formants_relative.mean.column_name('relative_formants'),
                     c.word.intensity.mean.column_name('intensity'),
                     c.word.intensity_relative.mean.column_name('relative_intensity'),
                     c.word.discourse.name.column_name('discourse'),
