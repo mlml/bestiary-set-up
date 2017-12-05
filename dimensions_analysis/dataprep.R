@@ -22,7 +22,7 @@ suborq <- suborq[,c('discourse', 'Focus', 'Intonation', 'Structure')]
 
 condition.data <- rbind(suborn, suborq)
 
-t <- read.csv('C:/Users/michael/Dropbox/dimensions/pgdb_analysis.txt')
+t <- read.csv('D:/Dropbox/dimensions/pgdb_analysis.txt')
 
 t <- merge(t, condition.data)
 t$Intonation <- factor(t$Intonation)
