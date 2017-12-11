@@ -4,8 +4,8 @@ import os
 import sys
 
 sys.path.insert(0, '/mnt/e/Dev/Polyglot/PolyglotDB')
+sys.path.insert(0, '/mnt/e/Dev/Tools/python-acoustic-similarity')
 import re
-import yaml
 import csv
 import platform
 import polyglotdb.io as pgio
