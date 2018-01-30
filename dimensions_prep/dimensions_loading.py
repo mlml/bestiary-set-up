@@ -247,7 +247,9 @@ def extract(config):
                                                )
         q.to_csv(os.path.join(base_dir, 'F0_tracks.txt'))
 
-        rel_track = c.utterance.pitch_relative.track
+        rel_track = c.utterance.pitch
+        rel_track.relative = True
+        rel_track = rel_track.track
         q = c.query_graph(c.utterance).columns(c.utterance.speaker.name.column_name('speaker'),
                                                c.utterance.speaker.gender.column_name('speaker_gender'),
                                                 c.utterance.discourse.name.column_name('filename'),
