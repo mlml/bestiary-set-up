@@ -246,8 +246,9 @@ def extract(config):
                                                c.utterance.pitch.track
                                                )
         q.to_csv(os.path.join(base_dir, 'F0_tracks.txt'))
-
-        rel_track = c.utterance.pitch_relative.track
+        pitch = c.utterance.pitch
+        pitch.relative = True
+        rel_track = pitch.track
         q = c.query_graph(c.utterance).columns(c.utterance.speaker.name.column_name('speaker'),
                                                c.utterance.speaker.gender.column_name('speaker_gender'),
                                                 c.utterance.discourse.name.column_name('filename'),
@@ -276,10 +277,10 @@ def get_size_of_corpus(config):
 if __name__ == '__main__':
     r = True
     corpus_name = 'cont'
-    corpus_conf = {'corpus_directory': r'/mnt/e/Data/PolyglotData/cont',
+    corpus_conf = {'corpus_directory': r'/mnt/d/Data/PolyglotData/cont',
                    'input_format': 'mfa',
-                   'speaker_enrichment_file': r'/mnt/e/Data/Cont/speaker.txt',
-                   'discourse_enrichment_file': r'/mnt/e/Data/Cont/discourse.txt',
+                   'speaker_enrichment_file': r'/mnt/d/Data/Cont/speaker.txt',
+                   'discourse_enrichment_file': r'/mnt/d/Data/Cont/discourse.txt',
                    'vowel_inventory': ["ER0", "IH2", "EH1", "AE0", "UH1", "AY2", "AW2", "UW1", "OY2", "OY1", "AO0",
                                        "AH2", "ER1", "AW1",
                                        "OW0", "IY1", "IY2", "UW0", "AA1", "EY0", "AE1", "AA0", "OW1", "AW0", "AO1",
@@ -290,7 +291,7 @@ if __name__ == '__main__':
                    'extra_syllabic_segments':[],
                    'pauses':'^<SIL>$'}
     print('Processing...')
-    with ensure_local_database_running(corpus_name) as params:
+    with ensure_local_database_running(corpus_name, port=8080) as params:
         print(params)
         config = CorpusConfig(corpus_name, **params)
         print(config.data_dir)
