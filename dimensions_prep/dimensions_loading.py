@@ -94,7 +94,7 @@ def basic_enrichment(config, syllabics, pauses):
             begin = time.time()
             g.encode_pauses(pauses)
             # g.encode_pauses('^[<{].*$', call_back = call_back)
-            g.encode_utterances(min_pause_length=0.15)  # , call_back = call_back)
+            g.encode_utterances(min_pause_length=100)  # , call_back = call_back)
             # g.encode_utterances(min_pause_length = 0.5, call_back = call_back)
             time_taken = time.time() - begin
             print('Utterance enrichment took: {}'.format(time_taken))
